@@ -44,7 +44,7 @@ class Paddle:
             self.rect.y += PADDLE_SPEED
 
     def ai_move(self, ball):
-        # AI не всегда идеально следует за мячом
+        
         if self.rect.centery < ball.rect.centery and self.rect.bottom < HEIGHT:
             self.rect.y += AI_PADDLE_SPEED
         elif self.rect.centery > ball.rect.centery and self.rect.top > 0:
@@ -117,7 +117,7 @@ def main():
 
         if ball.rect.colliderect(paddle_a.rect):
             ball.speed_x *= -1
-            ball.rect.left = paddle_a.rect.right  
+            ball.rect.left = paddle_a.rect.right
 
         if ball.rect.colliderect(paddle_b.rect):
             ball.speed_x *= -1
