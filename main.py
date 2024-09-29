@@ -1,5 +1,6 @@
 import pygame
 import sys
+import random
 pygame.init()
 
 
@@ -44,11 +45,19 @@ class Paddle:
             self.rect.y += PADDLE_SPEED
 
     def ai_move(self, ball):
-        
+
         if self.rect.centery < ball.rect.centery and self.rect.bottom < HEIGHT:
             self.rect.y += AI_PADDLE_SPEED
         elif self.rect.centery > ball.rect.centery and self.rect.top > 0:
             self.rect.y -= AI_PADDLE_SPEED
+
+        if random.randint(0, 100) < 10:  # 10% вероятность
+            self.rect.y += random.choice([-AI_PADDLE_SPEED, AI_PADDLE_SPEED])
+
+        if self.rect.top < 0:
+            self.rect.top = 0
+        if self.rect.bottom > HEIGHT:
+            self.rect.bottom = HEIGHT
 
     def draw(self, window):
         pygame.draw.rect(window, WHITE, self.rect)
